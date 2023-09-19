@@ -7,7 +7,7 @@ class HousesApi {
     try {
       const resp = await fetch(HOUSES_API);
       const data = await resp.json();
-      return data;
+      return data
     } catch(e) {
       console.log('There was an error fetching GET data', e)
     }
@@ -25,6 +25,31 @@ class HousesApi {
     } catch(e) {
       console.log('There was a problem with PUT method', e)
     }
+  }
+  post = async(newHouse) => {
+    try {
+      const resp = await fetch(HOUSES_API, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newHouse)
+      });
+      return await resp.json()
+    } catch(e) {
+      console.log('There was an error with fetch POST', e)
+    }
+  }
+  delete = async(id) => {
+    try {
+      const resp = await fetch(`${HOUSES_API}/${id}`, {
+            method: 'DELETE'
+          });
+      return await resp.json();
+    } catch(e) {
+      console.log('There was an error with your DELETE method', e)
+    }
+    
   }
 }
 
