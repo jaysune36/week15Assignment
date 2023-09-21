@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react"
 import {housesApi} from "./HousesApi"
 import House from './House'
 import HouseUpdate from "./HouseUpdate";
+import RoomsList from "./Roomlist"
 
 function HousesList() {
   const [houses, setHouses] = useState([]);
   const [newHouseName, setNewHouseName] = useState('')
-  const [roomName, setRoomName] = useState('');
-  const [roomArea, setRoomArea] = useState('');
+  // const [roomName, setRoomName] = useState('');
+  // const [roomArea, setRoomArea] = useState('');
 
   useEffect(() => {
     housesApi.get().then(data => setHouses(data))
@@ -59,8 +60,8 @@ function HousesList() {
           <button onClick={
             () => deleteHouse(house.id)
           }>Delete</button>
+          <RoomsList house={house} key={house.id + 1} id={house.id} fetchHouses={fetchHouses}/>
           <HouseUpdate name={house.name} key={house.id} id={house.id} updateHouse={updateHouse}/>
-          <button>Add Room</button>
         </div>)
       } </div>
 
