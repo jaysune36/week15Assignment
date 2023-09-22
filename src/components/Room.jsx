@@ -3,6 +3,7 @@ import { housesApi } from "./HousesApi";
 
 export default function Room(props) {
 
+  // deleteRoom accepts the Room ID and uses the put method to filter through the room array and return the new array without the matching roomID passed in
   const deleteRoom = async (roomId) => {
     const updatedHouse = {
       ...props.house,

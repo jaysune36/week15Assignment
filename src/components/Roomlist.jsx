@@ -2,12 +2,14 @@ import React, {useState} from 'react'
 import { housesApi } from './HousesApi';  
 import Room from './Room';
 
+// Props passed from the HousesList to the roomsList to retreive the Rooms data from that House data
 export default function RoomsList (props) {
   const [roomName, setRoomName] = useState('');
   const [roomArea, setRoomArea] = useState(0);
   const [ idCount, setIdCount ] = useState(0)
   let rooms = [];
 
+  // addRoom uses the HousesApi instance of put to get the ID passed from props and added a new room item to the previous array already created
   const addRoom = async(e) => {
     e.preventDefault();
     await housesApi.put(props.id,{ rooms: [...props.house.rooms, {roomName, roomArea, 'id': idCount}]});
@@ -17,6 +19,7 @@ export default function RoomsList (props) {
     setRoomName('');
   }
 
+  // checks if there are any rooms passed from props and if there are creates a Room component to be displayed to the user
   if(props) {
     props.house.rooms.map((room, index)=>{
       rooms.push(<Room house={props.house} key={index} id={room.id} name={room.roomName} area={room.roomArea} fetchHouses={props.fetchHouses}/>);
