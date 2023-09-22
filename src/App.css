@@ -46,3 +46,7 @@
 ul {
   list-style-type: none;
 }
+
+.house-title h3 {
+  margin-right: 1rem;
+}
